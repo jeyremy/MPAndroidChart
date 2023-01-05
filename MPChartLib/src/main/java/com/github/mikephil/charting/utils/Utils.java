@@ -652,7 +652,9 @@ public abstract class Utils {
 
         // To have a consistent point of reference, we always draw left-aligned
         Paint.Align originalTextAlign = paint.getTextAlign();
-        paint.setTextAlign(Paint.Align.LEFT);
+        //paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTextAlign(Paint.Align.CENTER);
+
 
         if (angleDegrees != 0.f) {
 
@@ -678,7 +680,10 @@ public abstract class Utils {
             c.save();
             c.translate(translateX, translateY);
             c.rotate(angleDegrees);
-
+            if (line.contains("**")) {
+                line.replace("**", "");
+                paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            }
             c.drawText(text, drawOffsetX, drawOffsetY, paint);
 
             c.restore();
@@ -691,7 +696,10 @@ public abstract class Utils {
 
             drawOffsetX += x;
             drawOffsetY += y;
-
+            if (line.contains("**")) {
+                line.replace("**", "");
+                paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+            }
             c.drawText(text, drawOffsetX, drawOffsetY, paint);
         }
 
