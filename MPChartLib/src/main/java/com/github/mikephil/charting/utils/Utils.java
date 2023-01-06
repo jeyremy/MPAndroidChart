@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
@@ -574,7 +575,8 @@ public abstract class Utils {
 
         // To have a consistent point of reference, we always draw left-aligned
         Paint.Align originalTextAlign = paint.getTextAlign();
-        paint.setTextAlign(Paint.Align.LEFT);
+        //paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTextAlign(Paint.Align.CENTER);
 
         if (angleDegrees != 0.f) {
 
@@ -603,7 +605,16 @@ public abstract class Utils {
 
             for (String line: text.split("\n"))
             {
-                c.drawText(line, drawOffsetX, drawOffsetY, paint);
+                String lineToDraw = "";
+                if (line.contains("**")) {
+                    lineToDraw = line.replace("**", "");
+                    paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                }else{
+                    paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    lineToDraw = line;
+                }
+
+                c.drawText(lineToDraw, drawOffsetX, drawOffsetY, paint);
                 drawOffsetY += paint.descent() - paint.ascent();
 
             }
@@ -622,7 +633,16 @@ public abstract class Utils {
 
             for (String line: text.split("\n"))
             {
-                c.drawText(line, drawOffsetX, drawOffsetY, paint);
+                String lineToDraw = "";
+                if (line.contains("**")) {
+                    lineToDraw = line.replace("**", "");
+                    paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                }else{
+                    paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    lineToDraw = line;
+                }
+
+                c.drawText(lineToDraw, drawOffsetX, drawOffsetY, paint);
                 drawOffsetY += paint.descent() - paint.ascent();
             }
             
@@ -652,8 +672,7 @@ public abstract class Utils {
 
         // To have a consistent point of reference, we always draw left-aligned
         Paint.Align originalTextAlign = paint.getTextAlign();
-        //paint.setTextAlign(Paint.Align.LEFT);
-        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextAlign(Paint.Align.LEFT);
 
 
         if (angleDegrees != 0.f) {
@@ -680,10 +699,6 @@ public abstract class Utils {
             c.save();
             c.translate(translateX, translateY);
             c.rotate(angleDegrees);
-            if (line.contains("**")) {
-                line.replace("**", "");
-                paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-            }
             c.drawText(text, drawOffsetX, drawOffsetY, paint);
 
             c.restore();
@@ -696,10 +711,7 @@ public abstract class Utils {
 
             drawOffsetX += x;
             drawOffsetY += y;
-            if (line.contains("**")) {
-                line.replace("**", "");
-                paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-            }
+
             c.drawText(text, drawOffsetX, drawOffsetY, paint);
         }
 

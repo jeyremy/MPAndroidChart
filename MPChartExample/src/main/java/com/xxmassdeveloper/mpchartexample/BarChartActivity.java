@@ -27,6 +27,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
@@ -86,6 +87,10 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         // chart.setDrawYLabels(false);
 
         ValueFormatter xAxisFormatter = new DayAxisValueFormatter(chart);
+        List<String> labels = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            labels.add("test de \n**"+i+"**");
+        }
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
@@ -93,7 +98,9 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
-        xAxis.setValueFormatter(xAxisFormatter);
+        //xAxis.setValueFormatter(xAxisFormatter);
+        xAxis.setMultiLineLabel(true);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));;
 
         ValueFormatter custom = new MyValueFormatter("$");
 
