@@ -97,6 +97,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         xAxis.setTypeface(tfLight);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
+        xAxis.setDrawHighlightLabelsEnabled(true);
         xAxis.setLabelCount(7);
         //xAxis.setValueFormatter(xAxisFormatter);
         xAxis.setMultiLineLabel(true);

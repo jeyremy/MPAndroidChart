@@ -4,6 +4,7 @@ package com.xxmassdeveloper.mpchartexample;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.content.ContextCompat;
@@ -68,6 +69,9 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
+        xAxis.setDrawHighlightLabelsEnabled(true);
+        xAxis.setHighlightFillColor(Color.BLACK);
+        xAxis.setHighlightTextColor(Color.RED);
 
         chart.getAxisLeft().setDrawGridLines(false);
 

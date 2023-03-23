@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -19,7 +20,7 @@ public class XAxisRendererRadarChart extends XAxisRenderer {
     }
 
     @Override
-    public void renderAxisLabels(Canvas c) {
+    public void renderAxisLabels(Canvas c, Highlight[] indicesToHighlight)  {
 
         if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled())
             return;
